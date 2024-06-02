@@ -39,6 +39,7 @@ export const Profile: FC = () => {
     e.preventDefault();
     dispatch(updateUserDataThunk(formValue));
     dispatch(fetchUserDataThunk);
+    alert('данные успешно изменены');
   };
 
   const handleCancel = (e: SyntheticEvent) => {

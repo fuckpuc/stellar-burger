@@ -31,7 +31,7 @@ import {
 
 import { AppHeader, OrderInfo, IngredientDetails, Modal } from '@components';
 
-export const isAuthenticated = () => {
+const isAuthenticated = () => {
   const isAuth = useSelector((state) => selectIsAuthVerified(state.user));
   return isAuth;
 };
@@ -54,8 +54,18 @@ const ProtectedRoute = ({ element, requiresAuth }: ProtectedRouteProps) => {
 const OrderInfoModal = () => {
   const { number } = useParams<{ number: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClose = () => {
+    if (location.state && location.state.background) {
+      navigate(-1);
+    } else {
+      navigate('/feed');
+    }
+  };
+
   return (
-    <Modal title='Информация о заказе' onClose={() => navigate(-1)}>
+    <Modal title='Информация о заказе' onClose={handleClose}>
       {number && <OrderInfo orderNumber={number} />}
     </Modal>
   );
@@ -64,8 +74,18 @@ const OrderInfoModal = () => {
 const IngredientsDetailsModal = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClose = () => {
+    if (location.state && location.state.background) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
-    <Modal title='Детали ингредиента' onClose={() => navigate(-1)}>
+    <Modal title='Детали ингредиента' onClose={handleClose}>
       {id && <IngredientDetails />}
     </Modal>
   );
@@ -120,6 +140,17 @@ const ModalSwitch = () => {
       </Routes>
 
       {background && (
+        <Routes>
+          <Route path='/profile/orders/:number' element={<OrderInfoModal />} />
+          <Route path='/feed/:number' element={<OrderInfoModal />} />
+          <Route
+            path='/ingredients/:id'
+            element={<IngredientsDetailsModal />}
+          />
+        </Routes>
+      )}
+
+      {!background && (
         <Routes>
           <Route path='/profile/orders/:number' element={<OrderInfoModal />} />
           <Route path='/feed/:number' element={<OrderInfoModal />} />
