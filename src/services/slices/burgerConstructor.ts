@@ -13,10 +13,6 @@ interface BurgerConstructorState {
   ingredients: TConstructorIngredient[];
 }
 
-// interface BurgerConstructorState {
-//   ingredients: Ingredient[];
-// }
-
 const initialState: BurgerConstructorState = {
   bun: null,
   ingredients: []

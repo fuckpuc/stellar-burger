@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from '../../services/store';
 import {
   bunSelector,
   ingredientSelector
-} from '../../services/slices/bugerConstructor';
+} from '../../services/slices/burgerConstructor';
 import { useNavigate } from 'react-router-dom';
 import {
   clearUserOrder,
@@ -48,6 +48,7 @@ export const BurgerConstructor: FC = () => {
       return;
     } else if (isAutificated && constructorItems.bun) {
       dispatch(userOrder(fullIngredientList));
+      console.log('Отправляемые данные заказа:', fullIngredientList);
       dispatch(setOrderLoading(true));
     } else {
       navigate('/login');

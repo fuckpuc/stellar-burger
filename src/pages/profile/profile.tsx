@@ -24,9 +24,7 @@ export const Profile: FC = () => {
 
   useEffect(() => {
     setFormValue((prevState) => ({
-      ...prevState,
-      name: user?.name || '',
-      email: user?.email || ''
+      ...prevState
     }));
   }, [user]);
 
