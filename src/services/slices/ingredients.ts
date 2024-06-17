@@ -7,7 +7,7 @@ export const loadIngredients = createAsyncThunk(
   getIngredientsApi
 );
 
-const initialState: ingredientStateInterface = {
+export const initialState: ingredientStateInterface = {
   buns: [],
   sauces: [],
   mains: [],

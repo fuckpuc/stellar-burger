@@ -13,6 +13,23 @@ import {
 } from './user';
 
 describe('userSlice reducer', () => {
+  const mockUser: TUser = {
+    email: 'test@example.com',
+    name: 'Test User'
+  };
+
+  const mockOrders: TOrder[] = [
+    {
+      _id: '1',
+      status: 'done',
+      name: 'Order 1',
+      createdAt: '2022-01-01T00:00:00.000Z',
+      updatedAt: '2022-01-01T00:00:00.000Z',
+      number: 1,
+      ingredients: ['ingredient1']
+    }
+  ];
+
   it('должно возвращать начальное состояние', () => {
     expect(userSlice.reducer(undefined, { type: 'unknown' })).toEqual(
       initialUserState
@@ -30,11 +47,6 @@ describe('userSlice reducer', () => {
   });
 
   it('должен обрабатывать registerUserThunk.fulfilled', () => {
-    const mockUser: TUser = {
-      email: 'test@example.com',
-      name: 'Test User'
-    };
-
     const action = {
       type: registerUserThunk.fulfilled.type,
       payload: { user: mockUser }
@@ -72,11 +84,6 @@ describe('userSlice reducer', () => {
   });
 
   it('должен обрабатывать loginUserThunk.fulfilled', () => {
-    const mockUser: TUser = {
-      email: 'test@example.com',
-      name: 'Test User'
-    };
-
     const action = {
       type: loginUserThunk.fulfilled.type,
       payload: { user: mockUser }
@@ -114,11 +121,6 @@ describe('userSlice reducer', () => {
   });
 
   it('должен обрабатывать fetchUserDataThunk.fulfilled', () => {
-    const mockUser: TUser = {
-      email: 'test@example.com',
-      name: 'Test User'
-    };
-
     const action = {
       type: fetchUserDataThunk.fulfilled.type,
       payload: { user: mockUser }
@@ -157,18 +159,6 @@ describe('userSlice reducer', () => {
   });
 
   it('должен обрабатывать fetchUserOrdersThunk.fulfilled', () => {
-    const mockOrders: TOrder[] = [
-      {
-        _id: '1',
-        status: 'done',
-        name: 'Order 1',
-        createdAt: '2022-01-01T00:00:00.000Z',
-        updatedAt: '2022-01-01T00:00:00.000Z',
-        number: 1,
-        ingredients: ['ingredient1']
-      }
-    ];
-
     const action = {
       type: fetchUserOrdersThunk.fulfilled.type,
       payload: mockOrders
@@ -205,11 +195,6 @@ describe('userSlice reducer', () => {
   });
 
   it('должен обрабатывать updateUserDataThunk.fulfilled', () => {
-    const mockUser: TUser = {
-      email: 'test@example.com',
-      name: 'Updated User'
-    };
-
     const action = {
       type: updateUserDataThunk.fulfilled.type,
       payload: { user: mockUser }

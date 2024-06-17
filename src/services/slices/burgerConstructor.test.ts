@@ -3,18 +3,14 @@ import {
   addIngredient,
   moveIngredientUp,
   moveIngredientDown,
-  removeIngredient
+  removeIngredient,
+  initialState
 } from './burgerConstructor';
 import { TConstructorIngredient } from '../../utils/types';
 
 describe('burgerConstructorSlice', () => {
-  let initialState: ReturnType<typeof burgerConstructorSlice.reducer>;
-
   beforeEach(() => {
-    initialState = {
-      bun: null,
-      ingredients: []
-    };
+    initialState;
   });
 
   it('возвращать исходное состояние', () => {

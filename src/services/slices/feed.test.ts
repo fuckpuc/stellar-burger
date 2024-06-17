@@ -2,20 +2,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getFeedsApi, TFeedsResponse } from '../../utils/burger-api';
 import { feedStateInterface } from '../../utils/types';
 import { RootState } from '../store';
-import { feedSlice, getFeeds } from './feed';
+import { feedSlice, getFeeds, initialState } from './feed';
 
 // Мокаем getFeedsApi для тестирования
 jest.mock('../../utils/burger-api', () => ({
   getFeedsApi: jest.fn()
 }));
-
-const initialState: feedStateInterface = {
-  error: null,
-  loading: false,
-  total: 0,
-  orders: [],
-  totalToday: 0
-};
 
 // Тесты для редьюсера
 describe('feedSlice reducer', () => {

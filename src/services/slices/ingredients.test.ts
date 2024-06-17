@@ -1,15 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TIngredient, ingredientStateInterface } from '../../utils/types';
-import { ingredientsSlice, loadIngredients } from './ingredients';
-
-const initialState: ingredientStateInterface = {
-  buns: [],
-  sauces: [],
-  mains: [],
-  ingredients: [],
-  isLoading: false,
-  error: null
-};
+import { ingredientsSlice, loadIngredients, initialState } from './ingredients';
 
 describe('ingredientsSlice reducer', () => {
   it('возвращать начальное состояние', () => {

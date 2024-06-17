@@ -1,7 +1,8 @@
 import {
   SELECTOR_BREAD_BOTTOM,
   SELECTOR_BREAD_TOP,
-  SELECTOR_INGREDIENT
+  SELECTOR_INGREDIENT,
+  BASE_URL
 } from '../e2e/constructor.cy';
 
 describe('Тестирование добавления ингредиентов в заказ', () => {
@@ -47,6 +48,9 @@ describe('Оформление заказа', () => {
     cy.get(SELECTOR_INGREDIENT).children('button').click();
     cy.get(`[data-cy='submit-order']`).click();
     cy.get('@popupWindow').find('h2').contains('42942');
+    cy.intercept('POST', `${BASE_URL}/orders`, {
+      fixture: 'order.json'
+    });
   });
 });
 
