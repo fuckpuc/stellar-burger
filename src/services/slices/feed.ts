@@ -1,9 +1,9 @@
-import { getFeedsApi } from '@api';
+import { getFeedsApi } from '../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { feedStateInterface } from '@utils-types';
 import { RootState } from '../store';
 
-const initialState: feedStateInterface = {
+export const initialState: feedStateInterface = {
   error: null,
   loading: false,
   total: 0,
